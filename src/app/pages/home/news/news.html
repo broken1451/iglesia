@@ -1,0 +1,29 @@
+<section class="section news" aria-labelledby="news-title">
+  <div class="container">
+    <header class="head">
+      <div>
+        <span class="eyebrow">Actualidad</span>
+        <h2 id="news-title" class="section-title">Últimas noticias</h2>
+      </div>
+      <a class="all" routerLink="/noticias">
+        Ver todas
+        <app-icon name="arrow-right" />
+      </a>
+    </header>
+
+    <ul class="grid">
+      @for (item of news; track item.title) {
+        <li>
+          <a class="card" [routerLink]="item.path">
+            <span class="category">{{ item.category }}</span>
+            <h3>{{ item.title }}</h3>
+            <span class="more">
+              Leer más
+              <app-icon name="arrow-right" />
+            </span>
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
