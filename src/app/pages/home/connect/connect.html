@@ -1,0 +1,26 @@
+<section class="section" aria-labelledby="connect-title">
+  <div class="container">
+    <div class="band">
+      <div>
+        <span class="eyebrow">Mantente conectado</span>
+        <h2 id="connect-title" class="section-title">Síguenos y escríbenos</h2>
+        <p>
+          Entérate de las actividades de las ramas, departamentos e iglesias de la Convención en
+          nuestras redes sociales.
+        </p>
+      </div>
+      <div class="actions">
+        @for (link of social; track link.label) {
+          <a class="btn btn-outline" [href]="link.href" target="_blank" rel="noopener">
+            <app-icon [name]="link.icon" />
+            {{ link.label }}
+          </a>
+        }
+        <a class="btn btn-primary" [href]="'mailto:' + email">
+          <app-icon name="mail" />
+          Contáctanos
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

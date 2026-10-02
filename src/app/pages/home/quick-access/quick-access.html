@@ -1,0 +1,25 @@
+<section class="container" aria-label="Accesos rápidos">
+  <ul class="grid">
+    @for (link of links; track link.title) {
+      <li>
+        @if (link.href) {
+          <a class="card" [href]="link.href" target="_blank" rel="noopener">
+            <ng-container *ngTemplateOutlet="content; context: { $implicit: link }" />
+          </a>
+        } @else {
+          <a class="card" [routerLink]="link.path">
+            <ng-container *ngTemplateOutlet="content; context: { $implicit: link }" />
+          </a>
+        }
+      </li>
+    }
+  </ul>
+</section>
+
+<ng-template #content let-link>
+  <span class="icon"><app-icon [name]="link.icon" /></span>
+  <span>
+    <h3>{{ link.title }}</h3>
+    <p>{{ link.description }}</p>
+  </span>
+</ng-template>

@@ -1,0 +1,27 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container inner">
+    <div class="copy">
+      <span class="eyebrow">Convención Bautista Nacional de Chile</span>
+      <h1 id="hero-title">Unidos para extender el Reino de Dios en Chile</h1>
+      <p class="lead">{{ mission }}</p>
+      <div class="actions">
+        <a class="btn btn-primary" routerLink="/iglesias">
+          Encuentra una iglesia
+          <app-icon name="arrow-right" />
+        </a>
+        <a class="btn btn-outline" routerLink="/qsomos">Conoce quiénes somos</a>
+      </div>
+    </div>
+
+    <a class="featured" [routerLink]="featured.path">
+      <span class="tag">Destacado</span>
+      <span class="featured-icon"><app-icon name="globe" /></span>
+      <h2>{{ featured.title }}</h2>
+      <p>Acompáñanos en este encuentro de la Convención en torno a la obra misionera.</p>
+      <span class="more">
+        Ver detalles
+        <app-icon name="arrow-right" />
+      </span>
+    </a>
+  </div>
+</section>

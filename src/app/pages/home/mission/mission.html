@@ -1,0 +1,37 @@
+<section class="section" aria-labelledby="mission-title">
+  <div class="container layout">
+    <div class="intro">
+      <span class="eyebrow">Nuestra misión</span>
+      <h2 id="mission-title" class="section-title">
+        Una familia de iglesias al servicio del Reino
+      </h2>
+      <blockquote>
+        <app-icon name="book" />
+        <p>{{ mission }}</p>
+      </blockquote>
+      <p class="note">
+        Como fruto de esta misión buscamos la plantación de nuevas iglesias y ministerios a lo largo
+        del país.
+      </p>
+      <a class="link" routerLink="/qsomos">
+        Más sobre nosotros
+        <app-icon name="arrow-right" />
+      </a>
+    </div>
+
+    <div>
+      <h3 class="values-title">Lo que creemos</h3>
+      <ol class="values">
+        @for (value of values; track value.title; let i = $index) {
+          <li>
+            <span class="number">{{ i + 1 }}</span>
+            <div>
+              <h4>{{ value.title }}</h4>
+              <p>{{ value.description }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</section>

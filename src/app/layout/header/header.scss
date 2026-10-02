@@ -1,0 +1,198 @@
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: block;
+}
+
+.header {
+  background: var(--color-navy-900);
+  color: #fff;
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--header-height);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  line-height: 1.15;
+
+  strong {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+  }
+
+  span span {
+    font-size: 0.8rem;
+    color: var(--color-gold-400);
+    letter-spacing: 0.04em;
+  }
+}
+
+.menu-toggle {
+  display: inline-flex;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: inherit;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.nav-list,
+.submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: rgb(255 255 255 / 85%);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover,
+  &.active {
+    color: #fff;
+    background: rgb(255 255 255 / 8%);
+  }
+
+  app-icon {
+    font-size: 0.85rem;
+  }
+}
+
+.submenu a {
+  display: block;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+// Móvil: menú desplegable a pantalla completa, submenús siempre visibles.
+@media (max-width: 1023px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: calc(100dvh - var(--header-height));
+    padding: 1rem 1.25rem 2rem;
+    overflow-y: auto;
+    background: var(--color-navy-900);
+    display: none;
+
+    &.open {
+      display: block;
+    }
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 0.75rem 0.5rem;
+    font-size: 1.05rem;
+
+    app-icon[name='chevron-down'] {
+      display: none;
+    }
+  }
+
+  .submenu {
+    padding: 0 0 0.5rem 1rem;
+    border-left: 2px solid rgb(201 151 63 / 40%);
+    margin-left: 0.5rem;
+
+    a {
+      color: rgb(255 255 255 / 75%);
+    }
+  }
+}
+
+// Escritorio: barra horizontal con submenús al pasar o enfocar.
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .submenu {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    left: 0;
+    min-width: 15rem;
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition:
+      opacity 0.15s,
+      transform 0.15s,
+      visibility 0.15s;
+
+    // Puente invisible para no perder el hover entre botón y submenú.
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -0.5rem 0 auto;
+      height: 0.5rem;
+    }
+
+    a:hover {
+      background: var(--color-gold-100);
+      color: var(--color-navy-900);
+    }
+  }
+
+  .submenu-end {
+    left: auto;
+    right: 0;
+  }
+
+  .has-children:hover .submenu,
+  .has-children:focus-within .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .mail-link {
+    margin-left: 0.5rem;
+    border: 1px solid rgb(255 255 255 / 25%);
+    border-radius: 999px;
+  }
+}

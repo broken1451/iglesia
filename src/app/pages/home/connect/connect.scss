@@ -1,0 +1,30 @@
+.band {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border-radius: var(--radius-lg);
+  color: rgb(255 255 255 / 80%);
+  background:
+    radial-gradient(30rem 20rem at 100% 0%, rgb(201 151 63 / 30%), transparent 70%),
+    var(--color-navy-800);
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1.3fr 1fr;
+  }
+
+  h2 {
+    margin-bottom: 0.75rem;
+    color: #fff;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  @media (min-width: 900px) {
+    justify-content: flex-end;
+  }
+}

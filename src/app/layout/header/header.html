@@ -1,0 +1,70 @@
+<header class="header">
+  <div class="container bar">
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <app-logo />
+      <span class="brand-text">
+        <strong>Convención Bautista</strong>
+        <span>Nacional de Chile</span>
+      </span>
+    </a>
+
+    <button
+      type="button"
+      class="menu-toggle"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="main-nav"
+      (click)="toggleMenu()"
+    >
+      <app-icon [name]="menuOpen() ? 'close' : 'menu'" />
+      <span class="visually-hidden">{{ menuOpen() ? 'Cerrar menú' : 'Abrir menú' }}</span>
+    </button>
+
+    <nav id="main-nav" class="nav" [class.open]="menuOpen()" aria-label="Principal">
+      <ul class="nav-list">
+        @for (item of nav; track item.label) {
+          <li class="nav-item" [class.has-children]="item.children">
+            @if (item.children) {
+              <button type="button" class="nav-link" aria-haspopup="true">
+                {{ item.label }}
+                <app-icon name="chevron-down" />
+              </button>
+              <ul class="submenu">
+                @for (child of item.children; track child.label) {
+                  <li>
+                    <a [routerLink]="child.path" (click)="closeMenu()">{{ child.label }}</a>
+                  </li>
+                }
+              </ul>
+            } @else if (item.href) {
+              <a class="nav-link" [href]="item.href" target="_blank" rel="noopener">
+                {{ item.label }}
+              </a>
+            } @else {
+              <a
+                class="nav-link"
+                [routerLink]="item.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeMenu()"
+                >{{ item.label }}</a
+              >
+            }
+          </li>
+        }
+        <li class="nav-item has-children">
+          <button type="button" class="nav-link mail-link" aria-haspopup="true">
+            <app-icon name="mail" />
+            Correo
+          </button>
+          <ul class="submenu submenu-end">
+            @for (link of mail; track link.label) {
+              <li>
+                <a [href]="link.href" target="_blank" rel="noopener">{{ link.label }}</a>
+              </li>
+            }
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
